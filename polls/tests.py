@@ -3,7 +3,7 @@ import datetime
 from django.test import TestCase
 from django.utils import timezone
 from django.urls import reverse
-from .models import Question
+from .models import Question, Choice
 # Create your tests here.
 
 
@@ -27,7 +27,9 @@ class QuestionModelsTests(TestCase):
 
 def createQuestion(question_text, days):
     time = timezone.now() + datetime.timedelta(days=days)
-    return Question.objects.create(question_text=question_text, pub_date=time)
+    question = Question.objects.create(question_text=question_text, pub_date=time)
+    Choice.objects.create(question=question, choice_text="Choice")
+    return question
 
 
 class QuestionIndexViewTests(TestCase):
@@ -85,6 +87,18 @@ class QuestionDetailView(TestCase):
         url = reverse("polls:detail", args=(past_question.id,))
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
+
+    def test_question_without_choices(self):
+        question = Question.objects.create(question_text="Question without choices", pub_date=timezone.now())
+        url = reverse("polls:detail", args=(question.id,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)
+
+    def test_question_with_choices(self):
+        question = createQuestion(question_text="Question with choices", days=0)
+        url = reverse("polls:detail", args=(question.id,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
 
 
 class QuestionResultsView(TestCase):
