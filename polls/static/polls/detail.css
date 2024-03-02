@@ -1,0 +1,31 @@
+body {
+    background-color: #181D27;
+
+    color: white;
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+fieldset {
+    border-color: #187F58;
+    border-width: 2px;
+}
+
+input {
+    accent-color: #187F58;
+}
+
+input[type="submit"] {
+    background-color: #187F58;
+
+    color: white;
+    font-weight: bold;
+
+    width: 48px;
+    height: 24px;
+    margin-top: 16px;
+
+    border-radius: 4px;
+    border-color: #0C4B33;
+}
