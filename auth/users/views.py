@@ -1,7 +1,8 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, password_validation
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.core.exceptions import ValidationError
 
 
 def index(request):
@@ -9,6 +10,8 @@ def index(request):
 
 
 def signup(request):
+    error_messages = []
+
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -16,12 +19,19 @@ def signup(request):
 
         user = User.objects.filter(username=username).first()
         if isinstance(user, User):
-            return HttpResponse("User already exists")
+            error_messages.append("User already exists")
 
-        user = User.objects.create_user(username, email, password)
-        user.save()
-    else:
-        return render(request, "users/signup.html")
+        try:
+            password_validation.validate_password(password)
+        except ValidationError as e:
+            error_messages.extend(e.messages)
+
+        if not error_messages:
+            user = User.objects.create_user(username, email, password)
+            user.save()
+            return HttpResponse("User created successfully")
+
+    return render(request, "users/signup.html", {'error_messages': error_messages})
 
 
 def login(request):

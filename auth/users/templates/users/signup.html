@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Django Authentication</title>
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'users/signup.css' %}"/>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Authentication</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/signup.css' %}"/>
+    <style>
+        .errorlist {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
 
-    <body>
-        <div class="form">
-            <form method="POST"> 
-                {% csrf_token %}
-                <h3> Register </h3>
-                <input type="text" id="username" name="username" placeholder="Username" required><br><br>
-
-                <input type="email" id="email" name="email" placeholder="Email address" required><br><br>
-
-                <input type="password" id="password" name="password" placeholder="Password" required><br><br>
-
-            </form>
-            <input id="signup" type="submit" value="Create account"></input> 
-            <p> Already have an account? <a href="../login/">Login now</a> </p>
-        </div>
-    </body>
+<body>
+    <div class="form">
+        <form method="POST"> 
+            {% csrf_token %}
+            <h3> Register </h3>
+            
+            
+            <input type="text" id="username" name="username" placeholder="Username" required><br><br>
+            <input type="email" id="email" name="email" placeholder="Email address" required><br><br>
+            <input type="password" id="password" name="password" placeholder="Password" required><br><br>
+            {% if error_messages %}
+            <div class="errorlist">
+                {% for message in error_messages %}
+                <p>{{ message }}</li>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <input id="signup" type="submit" value="Create account"> 
+        </form>
+        <p> Already have an account? <a href="../login/">Login now</a> </p>
+    </div>
+</body>
 
 </html>
