@@ -58,7 +58,7 @@ def login(request):
 @login_required
 def logged_in(request):
     username = request.user.username
-    return render(request, "logged_in", {"username": username})
+    return render(request, "users/logged_in.html", {"username": username})
 
 
 def logout(request):
