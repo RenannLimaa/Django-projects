@@ -1,5 +1,9 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, password_validation
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as login_django
+from django.contrib.auth import logout as logout_django
+from django.contrib.auth import password_validation
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
@@ -42,7 +46,21 @@ def login(request):
         password = request.POST.get("password")
 
         user = authenticate(username=username, password=password)
-        if user is None:
+        if user is not None:
+            login_django(request, user)
+            return redirect("logged_in")
+        else:
             return HttpResponse("Username or password incorrect")
     else:
         return render(request, "users/login.html")
+
+
+@login_required
+def logged_in(request):
+    username = request.user.username
+    return render(request, "logged_in", {"username": username})
+
+
+def logout(request):
+    logout_django(request)
+    return redirect("index")
