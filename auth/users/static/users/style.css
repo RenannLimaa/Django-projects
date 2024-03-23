@@ -28,6 +28,10 @@ html, body {
     cursor: pointer;
 }
 
+.welcome button:hover {
+    transform: scale(1.05);
+}
+
 .welcome a {
     color: white;
     text-decoration: none;
