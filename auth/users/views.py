@@ -1,8 +1,9 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, password_validation
 from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.shortcuts import render
 from django.core.exceptions import ValidationError
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
 
 
 def index(request):
@@ -29,9 +30,10 @@ def signup(request):
         if not error_messages:
             user = User.objects.create_user(username, email, password)
             user.save()
-            return HttpResponse("User created successfully")
+            messages.success(request, "Your account was created succesfully")
+            return redirect("login")
 
-    return render(request, "users/signup.html", {'error_messages': error_messages})
+    return render(request, "users/signup.html", {"error_messages": error_messages})
 
 
 def login(request):
