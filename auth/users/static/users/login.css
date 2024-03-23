@@ -27,13 +27,13 @@ html, body {
 }
 
 .form input[type=text],
-.form input[type=email],
 .form input[type=password] {
     width: 300px;
     height: 32px;
 }
-#signup {
-    width: 300px;
+
+#login {
+    width: 307px;
     height: 48px;
     padding: 4px;
     color: #FFFFFF;
@@ -44,4 +44,9 @@ html, body {
     background-color: #006CFF;
     border-radius: 4px;
 
+    cursor: pointer;
+}
+
+#login:hover {
+    transform: scale(1.05);
 }
