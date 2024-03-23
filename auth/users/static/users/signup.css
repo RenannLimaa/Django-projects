@@ -46,7 +46,11 @@ html, body {
     background-color: #006CFF;
     border-radius: 4px;
 
+    cursor: pointer;
 }
+
+#signup:hover {
+    transform: scale(1.05);
 
 .form a {
     color: #006CFF;
