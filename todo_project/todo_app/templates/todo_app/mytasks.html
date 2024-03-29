@@ -3,10 +3,41 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'todo_app/styles.css' %}"</link>
+        <script defer src="{% static 'todo_app/script.js' %}"></script>
+
         <title>My tasks</title>
     </head>
 
     <body>
         <h1>Tasks</h1>
+        {% for task in tasks %}
+        <input type="checkbox">
+        <button class="task-list"> {{ task.task_name }}</button>
+        {% endfor %}
+
+        <dialog class="modal">
+            <div class="modal-header">
+                <h2> Add Task </h3>
+                <button class="close-modal-btn">&times;</button>
+            </div>
+            <form>
+                <label for="title">Title</label>
+                <input type="text" id="title" required>
+
+                <label for="description">Description</label>
+                <textarea id="description"></textarea>
+
+                <label for="due-date">Due Date</label>
+                <input type="date" id="due-date">
+
+                <button class="save-task-btn" type="submit"> Save </button>
+            </form>
+        </dialog>
+
+        <button class="add-task-btn">&plus;</button>
     </body>
 </html>
+
