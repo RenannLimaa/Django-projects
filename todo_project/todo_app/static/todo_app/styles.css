@@ -9,7 +9,7 @@
 
     cursor: pointer;
 }
-.modal {
+.add-task-modal {
     width: 50%;
     height: 50%;
     border: none;
