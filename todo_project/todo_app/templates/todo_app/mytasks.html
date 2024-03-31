@@ -38,6 +38,25 @@
             </form>
         </dialog>
 
+        <dialog class="edit-task-modal">
+            <div class="modal-header">
+                <h2> Add Task </h3>
+                <button class="close-modal-btn">&times;</button>
+            </div>
+            <form method="POST" action="{% url 'add_task' %}">
+                {% csrf_token %}
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description"></textarea>
+
+                <label for="due-date">Due Date</label>
+                <input type="date" id="due-date" name="due-date">
+
+                <button class="save-task-btn" type="submit"> Save </button>
+            </form>
+        </dialog>
         <button class="add-task-btn">&plus;</button>
     </body>
 </html>
