@@ -15,10 +15,15 @@
         <h1>Tasks</h1>
         {% for task in tasks %}
         <input type="checkbox">
-        <button class="task-list"> {{ task.task_name }}</button><br>
+        <button class="task-list"
+            data-task-name="{{ task.task_name }}"
+            data-task-description="{{ task.description }}"
+            data-task-due-date="{{ task.due_date }}">
+            {{ task.task_name }}
+        </button><br>
         {% endfor %}
 
-        <dialog class="add-task-modal">
+        <dialog class="modal add-task-modal">
             <div class="modal-header">
                 <h2> Add Task </h3>
                 <button class="close-modal-btn">&times;</button>
@@ -38,12 +43,12 @@
             </form>
         </dialog>
 
-        <dialog class="edit-task-modal">
+        <dialog class="modal edit-task-modal">
             <div class="modal-header">
                 <h2> Add Task </h3>
                 <button class="close-modal-btn">&times;</button>
             </div>
-            <form method="POST" action="{% url 'add_task' %}">
+            <form id="edit-task-form" method="POST" action="{% url 'add_task' %}">
                 {% csrf_token %}
                 <label for="title">Title</label>
                 <input type="text" id="title" name="title" required>
@@ -54,7 +59,10 @@
                 <label for="due-date">Due Date</label>
                 <input type="date" id="due-date" name="due-date">
 
-                <button class="save-task-btn" type="submit"> Save </button>
+                <div class="form-btns">
+                    <button class="save-task-btn" type="submit"> Save </button>
+                    <button class="delete-task-btn" type="submit"> Delete</button>
+                </div>
             </form>
         </dialog>
         <button class="add-task-btn">&plus;</button>
