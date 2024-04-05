@@ -19,6 +19,19 @@ closeModalButtons.forEach(button => {
         }
     });
 });
+
+function saveTask() {
+    const addTaskUrl = document.getElementById('edit-task-form').dataset.addTaskUrl;
+    document.getElementById('edit-task-form').action = addTaskUrl;
+    document.getElementById('edit-task-form').submit();
+}
+
+function deleteTask() {
+    const deleteTaskUrl = document.getElementById('edit-task-form').dataset.deleteTaskUrl;
+    document.getElementById('edit-task-form').action = deleteTaskUrl;
+    document.getElementById('edit-task-form').submit();
+}
+
 function formatDate(inputDate) {
     var split_string = inputDate.split(','); 
     var datePart = split_string[0];

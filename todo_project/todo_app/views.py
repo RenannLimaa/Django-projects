@@ -26,3 +26,15 @@ def add_task(request):
         return redirect("my_tasks")
     else:
         return render(request, "todo_app/mytasks.html")
+
+
+def delete_task(request):
+    if request.method == "POST":
+        title = request.POST.get("title")
+
+        task = Task.objects.get(task_name=title)
+        task.delete()
+        return redirect("my_tasks")
+    else:
+        return render(request, "todo_app/mytasks.html")
+
