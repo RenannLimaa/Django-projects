@@ -38,3 +38,19 @@ def delete_task(request):
     else:
         return render(request, "todo_app/mytasks.html")
 
+
+def edit_task(request):
+    if request.method == "POST":
+        title = request.POST.get("title")
+        due_date = request.POST.get("due-date")
+        description = request.POST.get("description")
+
+        if due_date == "":
+            due_date = None
+
+        elif description == "":
+            description = None
+
+        task = Task(task_name=title, description=description, due_date=due_date)
+    else:
+        return render(request, "todo_app/mytasks.html")
