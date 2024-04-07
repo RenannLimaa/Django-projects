@@ -16,6 +16,7 @@
         {% for task in tasks %}
         <input type="checkbox">
         <button class="task-list"
+            data-task-id="{{ task.task_id }}"
             data-task-name="{{ task.task_name }}"
             data-task-description="{{ task.description }}"
             data-task-due-date="{{ task.due_date }}">
@@ -50,6 +51,7 @@
             </div>
             <form id="edit-task-form" method="POST" action="#" data-add-task-url="{% url 'add_task' %}" data-delete-task-url="{% url 'delete_task' %}">
                 {% csrf_token %}
+                <input type="hidden" id="task-id" name="task_id">
                 <label for="title">Title</label>
                 <input type="text" id="title" name="title" required>
 

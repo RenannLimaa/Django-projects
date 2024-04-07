@@ -50,15 +50,17 @@ function formatDate(inputDate) {
 
 taskButtons.forEach(taskButton => {
     taskButton.addEventListener('click', function () {
+        const idInput = editTaskForm.querySelector("#task-id");
         const titleInput = editTaskForm.querySelector("#title");
         const descriptionInput = editTaskForm.querySelector("#description");
         const dueDateInput = editTaskForm.querySelector("#due-date");
 
-
+        const taskId = taskButton.dataset.taskId;
         const taskName = taskButton.dataset.taskName;
         const taskDescription = taskButton.dataset.taskDescription;
         const taskDueDate = taskButton.dataset.taskDueDate;
 
+        idInput.value = taskId;
         titleInput.value = taskName;
         descriptionInput.value = taskDescription;
         dueDateInput.value = formatDate(taskDueDate);
