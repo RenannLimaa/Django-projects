@@ -42,6 +42,7 @@ def delete_task(request):
 
 def edit_task(request):
     if request.method == "POST":
+        task_id = request.POST.get("task_id")
         title = request.POST.get("title")
         due_date = request.POST.get("due-date")
         description = request.POST.get("description")
@@ -52,6 +53,12 @@ def edit_task(request):
         elif description == "":
             description = None
 
-        task = Task(task_name=title, description=description, due_date=due_date)
+        task = get_object_or_404(Task, pk=task_id)
+        task.title = title
+        task.due_date = due_date
+        task.description = description
+        task.save()
+        print(task_id)
+        return redirect("my_tasks")
     else:
         return render(request, "todo_app/mytasks.html")

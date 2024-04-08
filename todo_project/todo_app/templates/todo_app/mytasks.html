@@ -49,7 +49,7 @@
                 <h2> Add Task </h3>
                 <button class="close-modal-btn">&times;</button>
             </div>
-            <form id="edit-task-form" method="POST" action="#" data-add-task-url="{% url 'add_task' %}" data-delete-task-url="{% url 'delete_task' %}">
+            <form id="edit-task-form" method="POST" action="#" data-add-task-url="{% url 'edit_task' %}" data-delete-task-url="{% url 'delete_task' %}">
                 {% csrf_token %}
                 <input type="hidden" id="task-id" name="task_id">
                 <label for="title">Title</label>
