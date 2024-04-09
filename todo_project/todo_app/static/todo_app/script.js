@@ -11,27 +11,6 @@ addTaskButton.onclick = function () {
         addTaskModal.showModal();
 }
 
-closeModalButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const modalToClose = button.closest('.modal');
-        if (modalToClose) {
-            modalToClose.close();
-        }
-    });
-});
-
-function saveTask() {
-    const addTaskUrl = document.getElementById('edit-task-form').dataset.addTaskUrl;
-    document.getElementById('edit-task-form').action = addTaskUrl;
-    document.getElementById('edit-task-form').submit();
-}
-
-function deleteTask() {
-    const deleteTaskUrl = document.getElementById('edit-task-form').dataset.deleteTaskUrl;
-    document.getElementById('edit-task-form').action = deleteTaskUrl;
-    document.getElementById('edit-task-form').submit();
-}
-
 function formatDate(inputDate) {
     var split_string = inputDate.split(','); 
     var datePart = split_string[0];
@@ -68,3 +47,25 @@ taskButtons.forEach(taskButton => {
         editTaskModal.showModal();
     });
 });
+
+closeModalButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const modalToClose = button.closest('.modal');
+        if (modalToClose) {
+            modalToClose.close();
+        }
+    });
+});
+
+function saveTask() {
+    const addTaskUrl = document.getElementById('edit-task-form').dataset.addTaskUrl;
+    document.getElementById('edit-task-form').action = addTaskUrl;
+    document.getElementById('edit-task-form').submit();
+}
+
+function deleteTask() {
+    const deleteTaskUrl = document.getElementById('edit-task-form').dataset.deleteTaskUrl;
+    document.getElementById('edit-task-form').action = deleteTaskUrl;
+    document.getElementById('edit-task-form').submit();
+}
+
