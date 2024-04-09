@@ -9,6 +9,7 @@
 
     cursor: pointer;
 }
+
 .add-task-modal, .edit-task-modal {
     width: 50%;
     height: 50%;
@@ -48,62 +49,19 @@ form input {
     display:block;
 }
 
-.form-btns {
-    position: absolute;
-    bottom: 16px;
-    display: flex;
-    gap: 64px;
-}
-.save-task-btn {
-    width: 56px;
-    color: white;
-    background-color: #0288d1;
-    padding: 4px;
-    margin-bottom: 16px;
-
-    font-weight: bold;
-    font-size: 16px;
-
-    bottom: 0;
-
-    border: none;
-    border-radius: 16px;
-}
-
-.delete-task-btn {
-    width: 72px;
-    color: white;
-    background-color: red;
-    padding: 4px;
-    margin-bottom: 16px;
-
-    font-weight: bold;
-    font-size: 16px;
-
-    bottom: 0;
-
-    border: none;
-    border-radius: 16px;
-}
-
-.save-task-btn:hover {
-    transform: scale(1.05);
-}
-
-#title {
+#title, #description, #due-date{
     width: 600px;
-    height: 32px;
     margin-bottom: 8px;
     
     font-size:16px
 }
 
-#description {
-    width: 600px;
-    height: 68px;
-    margin-bottom: 8px;
+#title {
+    height: 32px;
+}
 
-    font-size: 16px;
+#description {
+    height: 68px;
 }
 
 #due-date {
@@ -111,6 +69,44 @@ form input {
     margin-bottom: 8px;
 
     font-size: 16px;
+}
+
+.form-btns {
+    position: absolute;
+    bottom: 16px;
+    display: flex;
+    gap: 64px;
+}
+
+.save-task-btn {    
+    background-color: #0288d1;
+}
+
+.delete-task-btn {
+    background-color: red;
+}
+
+.save-task-btn, .delete-task-btn{
+    width: 56px;
+    color: white;
+    padding: 4px;
+    margin-bottom: 16px;
+    cursor: pointer;
+
+    font-weight: bold;
+    font-size: 16px;
+
+    bottom: 0;
+
+    border: none;
+    border-radius: 16px;
+}
+.save-task-btn:hover {
+    transform: scale(1.05);
+}
+
+.delete-task-btn:hover {
+    transform: scale(1.05);
 }
 
 .add-task-btn {
