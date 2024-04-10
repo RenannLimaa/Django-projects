@@ -44,7 +44,13 @@ form {
     flex-direction: column;
     justify-content: center;
 }
+.form-checkbox label {
+    display: flex;
+}
 
+.form-checkbox input {
+    flex: none;
+}
 form input {
     display:block;
 }
