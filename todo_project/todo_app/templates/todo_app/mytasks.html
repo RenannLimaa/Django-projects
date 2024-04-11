@@ -48,7 +48,7 @@
 
         <dialog class="modal edit-task-modal">
             <div class="modal-header">
-                <h2> Add Task </h3>
+                <h2> Edit Task </h3>
                 <button class="close-modal-btn">&times;</button>
             </div>
             <form id="edit-task-form" method="POST" action="#" data-add-task-url="{% url 'edit_task' %}" data-delete-task-url="{% url 'delete_task' %}">
@@ -63,7 +63,7 @@
                 <label for="due-date">Due Date</label>
                 <input type="date" id="due-date" name="due-date">
                 <div class="form-checkbox">
-                    <label><input type="checkbox" /> Click here to mark as done</label>
+                    <label><input type="checkbox" name="done"/> Click here to mark as done</label>
                 </div>
                 <div class="form-btns">
                     <button class="save-task-btn" type="button" onclick="saveTask()">Save</button>

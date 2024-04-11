@@ -14,7 +14,6 @@ def add_task(request):
         title = request.POST.get("title")
         due_date = request.POST.get("due-date")
         description = request.POST.get("description")
-
         if due_date == "":
             due_date = None
 
@@ -46,19 +45,26 @@ def edit_task(request):
         title = request.POST.get("title")
         due_date = request.POST.get("due-date")
         description = request.POST.get("description")
+        is_done = request.POST.get("done")
+        print("\n\n\n\n valor do checkbox " + is_done + "\n\n\n\n\n")
 
         if due_date == "":
             due_date = None
 
-        elif description == "":
+        if description == "":
             description = None
+
+        if is_done == "on":
+            is_done = True
+        else:
+            is_done = False
 
         task = get_object_or_404(Task, pk=task_id)
         task.title = title
         task.due_date = due_date
         task.description = description
+        task.is_done = is_done
         task.save()
-        print(task_id)
         return redirect("my_tasks")
     else:
         return render(request, "todo_app/mytasks.html")
