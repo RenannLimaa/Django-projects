@@ -14,7 +14,6 @@
     <body>
         <h1>Tasks</h1>
         {% for task in tasks %}
-        <input type="checkbox">
         <button class="task-list"
             data-task-id="{{ task.task_id }}"
             data-task-name="{{ task.task_name }}"
