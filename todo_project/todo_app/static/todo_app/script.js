@@ -27,35 +27,34 @@ function formatDate(inputDate) {
     return year + '-' + month + '-' + day 
 }
 
-taskButtons.forEach(taskButton => {
-    taskButton.addEventListener('click', function () {
-        const idInput = editTaskForm.querySelector("#task-id");
-        const titleInput = editTaskForm.querySelector("#title");
-        const descriptionInput = editTaskForm.querySelector("#description");
-        const dueDateInput = editTaskForm.querySelector("#due-date");
+function handleTaskButtonClick(event) {
+    const taskButton = event.currentTarget;
+    
+    const idInput = editTaskForm.querySelector("#task-id");
+    const titleInput = editTaskForm.querySelector("#title");
+    const descriptionInput = editTaskForm.querySelector("#description");
+    const dueDateInput = editTaskForm.querySelector("#due-date");
+    const taskCheckbox = editTaskForm.querySelector("#checkbox");
 
-        const taskId = taskButton.dataset.taskId;
-        const taskName = taskButton.dataset.taskName;
-        const taskDescription = taskButton.dataset.taskDescription;
-        const taskDueDate = taskButton.dataset.taskDueDate;
+    const taskId = taskButton.dataset.taskId;
+    const taskName = taskButton.dataset.taskName;
+    const taskDescription = taskButton.dataset.taskDescription;
+    const taskDueDate = taskButton.dataset.taskDueDate;
+    const taskIsDone = taskButton.dataset.taskIsDone;
 
-        idInput.value = taskId;
-        titleInput.value = taskName;
-        descriptionInput.value = taskDescription;
-        dueDateInput.value = formatDate(taskDueDate);
+    if (taskIsDone == "True") {
+        taskCheckbox.checked = true; 
+    } else {
+        taskCheckbox.checked = false;
+    }
 
-        editTaskModal.showModal();
-    });
-});
+    idInput.value = taskId;
+    titleInput.value = taskName;
+    descriptionInput.value = taskDescription;
+    dueDateInput.value = formatDate(taskDueDate);
 
-closeModalButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const modalToClose = button.closest('.modal');
-        if (modalToClose) {
-            modalToClose.close();
-        }
-    });
-});
+    editTaskModal.showModal();
+}
 
 function saveTask() {
     const addTaskUrl = document.getElementById('edit-task-form').dataset.addTaskUrl;
@@ -69,3 +68,16 @@ function deleteTask() {
     document.getElementById('edit-task-form').submit();
 }
 
+taskButtons.forEach(taskButton => {
+    taskButton.addEventListener('click', handleTaskButtonClick);
+});
+
+
+closeModalButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const modalToClose = button.closest('.modal');
+        if (modalToClose) {
+            modalToClose.close();
+        }
+    });
+});
