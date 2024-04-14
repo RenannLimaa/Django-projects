@@ -18,7 +18,8 @@
             data-task-id="{{ task.task_id }}"
             data-task-name="{{ task.task_name }}"
             data-task-description="{{ task.description }}"
-            data-task-due-date="{{ task.due_date }}">
+            data-task-due-date="{{ task.due_date }}"
+            data-task-is-done="{{ task.is_done }}">
             {{ task.task_name }}
         </button><br>
         {% endfor %}
@@ -62,7 +63,7 @@
                 <label for="due-date">Due Date</label>
                 <input type="date" id="due-date" name="due-date">
                 <div class="form-checkbox">
-                    <label><input type="checkbox" name="done"/> Click here to mark as done</label>
+                    <label><input type="checkbox" id="checkbox" name="done"/> Click here to mark as done</label>
                 </div>
                 <div class="form-btns">
                     <button class="save-task-btn" type="button" onclick="saveTask()">Save</button>
