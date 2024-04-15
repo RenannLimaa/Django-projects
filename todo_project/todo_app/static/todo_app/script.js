@@ -56,6 +56,16 @@ function handleTaskButtonClick(event) {
     editTaskModal.showModal();
 }
 
+function concludeTask(taskButton) {
+    const taskIsDone = taskButton.dataset.taskIsDone;
+    console.log(taskIsDone);
+    if (taskIsDone == "True") {
+        taskButton.style.textDecoration = "line-through";
+    } else {
+        taskButton.style.textDecoration = "none";
+    }
+}
+
 function saveTask() {
     const addTaskUrl = document.getElementById('edit-task-form').dataset.addTaskUrl;
     document.getElementById('edit-task-form').action = addTaskUrl;
@@ -72,6 +82,7 @@ taskButtons.forEach(taskButton => {
     taskButton.addEventListener('click', handleTaskButtonClick);
 });
 
+taskButtons.forEach(concludeTask);
 
 closeModalButtons.forEach(button => {
     button.addEventListener('click', function() {
