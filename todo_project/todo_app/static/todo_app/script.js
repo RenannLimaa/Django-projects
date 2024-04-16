@@ -60,9 +60,7 @@ function concludeTask(taskButton) {
     const taskIsDone = taskButton.dataset.taskIsDone;
     console.log(taskIsDone);
     if (taskIsDone == "True") {
-        taskButton.style.textDecoration = "line-through";
-    } else {
-        taskButton.style.textDecoration = "none";
+        taskButton.classList.add("task-done", "task-done-hover");
     }
 }
 
