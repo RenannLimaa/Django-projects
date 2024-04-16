@@ -14,14 +14,18 @@
     <body>
         <h1>Tasks</h1>
         {% for task in tasks %}
-        <button class="task-list"
-            data-task-id="{{ task.task_id }}"
-            data-task-name="{{ task.task_name }}"
-            data-task-description="{{ task.description }}"
-            data-task-due-date="{{ task.due_date }}"
-            data-task-is-done="{{ task.is_done }}">
-            {{ task.task_name }}
-        </button><br>
+        <ul>
+            <li>
+                <button class="task-list"
+                data-task-id="{{ task.task_id }}"
+                data-task-name="{{ task.task_name }}"
+                data-task-description="{{ task.description }}"
+                data-task-due-date="{{ task.due_date }}"
+                data-task-is-done="{{ task.is_done }}">
+                {{ task.task_name }}
+                </button><br>
+            </li>
+        </ul>
         {% endfor %}
 
         <dialog class="modal add-task-modal">
