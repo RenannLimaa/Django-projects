@@ -2,6 +2,14 @@
     font-family: arial;
 }
 
+h1 {
+    margin-left: 26px;
+}
+
+#divider {
+    border: 1px solid black;
+}
+
 .task-list {
     border: none;
     background: none;
@@ -99,14 +107,15 @@ form input {
 
 .save-task-btn {    
     background-color: #0288d1;
+    width: 56px;
 }
 
 .delete-task-btn {
     background-color: red;
+    width: 64px;
 }
 
 .save-task-btn, .delete-task-btn{
-    width: 56px;
     color: white;
     padding: 4px;
     margin-bottom: 16px;
