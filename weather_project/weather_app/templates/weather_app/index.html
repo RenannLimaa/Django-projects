@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Weather App</title>
-    </head>
-    <body>
-        <form method="POST">
-            {% csrf_token %}
-            <input type="text" name="city">
-            <button type="submit">Search</button>
-        </form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="city">
+        <button type="submit">Search</button>
+    </form>
 
+    {% if weather_data %}
+    <div class="city-container">
+        {% include "weather_app/city_weather.html" with weather_data=weather_data %}
+    </div>
+    {% endif %}
 
-        {% if weather_data %}
-        <div class="city-container">
-            {% include "weather_app/city_weather.html" with weather_data=weather_data %}
-        </div>
-        {% endif %}
-    </body>
+    {% if daily_forecast %}
+    <div class="forecasts-container">
+        {% include "weather_app/daily_forecast.html" with daily_forecast=daily_forecast %}
+    </div>
+    {% endif %}
+</body>
 </html>
