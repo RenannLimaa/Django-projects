@@ -1,11 +1,12 @@
-<h1> Forecast </h1>
 {% for day, forecasts in daily_forecast.items %}
 {% for forecast in forecasts %}
-<h2>{{ day }}</h2>
-<h3>{{ forecast.date }}</h3> 
-<h3>{{ forecast.time }}</h3> <!-- Assuming the first forecast of each day represents the whole day -->
-<h2>{{ forecast.min_temp }}</h2>
-<p>{{ forecasts.0.description }}</p>
-<img src="http://openweathermap.org/img/w/{{ forecasts.0.icon }}.png" alt="{{ weather_data.description }}">
+{% ifchanged day %}
+<h2 class="day">{{ day }}</h2>
+<h3 class="date">{{ forecast.date }}</h3>
+{% endifchanged %}
+<h3 class="time">{{ forecast.time }}</h3>
+<h2 class="temp">{{ forecast.min_temp }}</h2>
+<p class="description">{{ forecasts.0.description }}</p>
+<img src="http://openweathermap.org/img/w/{{ forecasts.0.icon }}.png" alt="{{ weather_data.description }}" class="forecast-icon">
 {% endfor %}
 {% endfor %}

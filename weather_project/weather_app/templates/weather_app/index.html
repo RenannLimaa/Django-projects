@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'weather_app/styles.css' %}">
     <title>Weather App</title>
 </head>
 <body>
-    <form method="POST">
-        {% csrf_token %}
-        <input type="text" name="city">
-        <button type="submit">Search</button>
-    </form>
+    <header>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Enter city name">
+            <button type="submit">Search</button>
+        </form>
+    </header>
 
     {% if weather_data %}
     <div class="city-container">
@@ -19,6 +23,7 @@
     {% endif %}
 
     {% if daily_forecast %}
+    <h1 class="forecast-heading"> Forecast </h1>
     <div class="forecasts-container">
         {% include "weather_app/daily_forecast.html" with daily_forecast=daily_forecast %}
     </div>
