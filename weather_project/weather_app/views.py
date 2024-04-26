@@ -21,9 +21,10 @@ def index(request):
 
     if request.method == "POST":
         city = request.POST.get("city")
+        city_capitalized = city.title()
 
-        weather_data, daily_forecasts = fetch_weather(city, API_KEY, current_weather_url, forecast_url)
-        print(daily_forecasts)
+        weather_data, daily_forecasts = fetch_weather(city_capitalized, API_KEY, current_weather_url, forecast_url)
+
         context = {
             "weather_data": weather_data,
             "daily_forecast": daily_forecasts
@@ -47,7 +48,7 @@ def fetch_weather(city, api_key, current_weather_url, forecast_url):
 
     forecast_response = requests.get(
         forecast_url.format(lat, lon, api_key)).json()
-    
+
     forecast_data = {}
 
     for daily_data in forecast_response["list"][:40]:
