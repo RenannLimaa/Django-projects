@@ -6,6 +6,11 @@ from django.shortcuts import render
 from django.template.defaulttags import register
 
 
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
+
+
 def index(request):
     API_KEY = (
         open("/home/renan/programming/Django/weather_project/API_KEY", "r")
@@ -48,17 +53,13 @@ def fetch_weather(city, api_key, current_weather_url, forecast_url):
 
     forecast_response = requests.get(
         forecast_url.format(lat, lon, api_key)).json()
-
-    forecast_data = {}
+    daily_forecasts = defaultdict(list)
 
     for daily_data in forecast_response["list"][:40]:
         dt_timestamp = datetime.datetime.fromtimestamp(daily_data["dt"])
         day_of_week = dt_timestamp.strftime("%A")
 
-        if day_of_week not in forecast_data:
-            forecast_data[day_of_week] = []
-
-        forecast_data[day_of_week].append(
+        daily_forecasts[day_of_week].append(
             {
                 "date": dt_timestamp.date(),
                 "day": day_of_week,
@@ -70,4 +71,4 @@ def fetch_weather(city, api_key, current_weather_url, forecast_url):
             }
         )
 
-    return weather_data, forecast_data
+    return weather_data, daily_forecasts
