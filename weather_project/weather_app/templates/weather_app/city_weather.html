@@ -1,9 +1,15 @@
-{% if weather_data %}
-<h1 class="city-name"> {{ weather_data.city }} </h1>
-<div class="weather-info">
-    <h2> Today </h2>
-    <h2 class="temperature"> {{ weather_data.temperature }} °C</h2>
-    <p class="description"> {{ weather_data.description }} </p>
-    <img src="https://openweathermap.org/img/w/{{ weather_data.icon }}.png" alt="{{ weather_data.description }}" class="weather-icon">
-</div>
+    {% if weather_data %}
+
+    <h1>{{ weather_data.city }} </h1>
+
+    <div class="weather-container-city">
+        <div class="weather">
+            <h2>Today</h2>
+            <h2>{{ weather_data.temperature }} °C </h2>
+            <p>{{ weather_data.description }} </p>
+            <img src="http://openweathermap.org/img/w/{{ weather_data.icon }}.png" alt="{{ weather_data.description }}">
+        </div>
+    </div>
+
+
 {% endif %}

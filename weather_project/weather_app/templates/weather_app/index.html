@@ -16,17 +16,13 @@
         </form>
     </header>
 
-    {% if weather_data %}
-    <div class="city-container">
-        {% include "weather_app/city_weather.html" with weather_data=weather_data %}
+    <div class="weather-container">
+        {% if weather_data %}
+            <div class="city-container">
+                {% include 'weather_app/city_weather.html' with weather_data=weather_data %}
+                {% include 'weather_app/daily_forecast.html' with daily_forecast=daily_forecast %}
+            </div>
+        {% endif %}
     </div>
-    {% endif %}
-
-    {% if daily_forecast %}
-    <h1 class="forecast-heading"> Forecast </h1>
-    <div class="forecasts-container">
-        {% include "weather_app/daily_forecast.html" with daily_forecast=daily_forecast %}
-    </div>
-    {% endif %}
 </body>
 </html>

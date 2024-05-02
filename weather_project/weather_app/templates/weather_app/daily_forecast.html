@@ -1,12 +1,26 @@
-{% for day, forecasts in daily_forecast.items %}
-{% for forecast in forecasts %}
-{% ifchanged day %}
-<h2 class="day">{{ day }}</h2>
-<h3 class="date">{{ forecast.date }}</h3>
-{% endifchanged %}
-<h3 class="time">{{ forecast.time }}</h3>
-<h2 class="temp">{{ forecast.min_temp }}</h2>
-<p class="description">{{ forecasts.0.description }}</p>
-<img src="http://openweathermap.org/img/w/{{ forecasts.0.icon }}.png" alt="{{ weather_data.description }}" class="forecast-icon">
-{% endfor %}
+<div class-"forecast-title">
+    <h1> Forecast </h1>
+</div>
+
+{% for key in daily_forecast %}
+
+    <div class="forecast-container">
+        {% for forecast in daily_forecast|get_item:key %}
+        
+            {% ifchanged  forecast.day %}
+                <div class="day">
+                    <h2> {{forecast.day}} </h2>
+                    <h3> {{forecast.date}} </h3>
+                </div>
+            {% endifchanged %}
+                <div class="forecast">
+                    <h3>{{ forecast.time }}</h3>
+                    <h2>{{ forecast.min_temp }} °C</h2>
+                    <p> {{ forecast.description }}</p>
+                    <img src="http://openweathermap.org/img/w/{{ forecast.icon }}.png" alt="{{ forecast.description }}">
+                </div>
+        {% endfor %}
+        
+    </div>
+
 {% endfor %}
